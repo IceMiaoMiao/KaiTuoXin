@@ -111,8 +111,8 @@ namespace Water2D
                 return;
 
             //Unity Simulate OFF
-            Physics2D.autoSimulation = false;
-
+            //Physics2D.autoSimulation = false;
+            Physics2D.simulationMode = SimulationMode2D.FixedUpdate;
             ExcludeRB2D();
 
 
@@ -130,7 +130,8 @@ namespace Water2D
             BackToNormalRB2D();
 
             //Unity Simulate ON
-            Physics2D.autoSimulation = true;
+            //Physics2D.autoSimulation = true;
+            Physics2D.simulationMode = SimulationMode2D.Update;
         }
 
        [HideInInspector]public bool alreadyCreated = false;
@@ -232,7 +233,7 @@ namespace Water2D
                     while (timer1 >= Time.fixedDeltaTime)
                     {
                         timer1 -= Time.fixedDeltaTime;
-                        if(!Physics2D.autoSimulation)
+                        if(Physics2D.simulationMode==0)
                             CurrentPhysicsScene.Simulate(Time.fixedDeltaTime);
                     }
                 }
